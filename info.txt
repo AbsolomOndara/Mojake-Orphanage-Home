@@ -1,0 +1,197 @@
+Core Concept: "The Baobab Tree"
+In African culture, the Baobab is the "Tree of Life"—a community gathering point that provides shelter, nourishment, and knowledge. The website will mirror this: strong roots (History/Stability), a wide trunk (Community/Support), and expansive branches (Future/Outreach).
+
+1. UX Strategy: User Flow & Psychology
+Before the UI, we map the user.
+
+Primary Personas:
+
+The Compassionate Donor: Wants transparency, impact reports, and an easy way to give.
+The Potential Sponsor: Wants to see specific children or programs they can connect with.
+The Volunteer (Local/International): Wants to know how they can help physically or with skills.
+The Researcher/Partner: Looks for data, history, and long-term goals.
+Emotional Journey:
+
+Entry: Trigger empathy (clean, high-quality photos of smiling children, not sad ones).
+
+Education: Build trust (Show the structure, the education, the meals).
+
+Action: Provide empowerment (Clear CTA: Donate, Sponsor, Visit).
+
+2. UI Style Guide
+Color Palette (Hex Codes):
+
+Forest Green (#2C5F2D): Primary. Used for headers, footers, and stability blocks. Represents the fertile land of Kisii.
+
+Dark Blue (#1A2E40): Primary. Used for text and navigation. Represents trust and the evening sky.
+
+White (#FFFFFF): Background. Keeps the site clean, airy, and readable.
+
+Sunset Yellow (#FDCA40): Accent. Used for "Call to Action" buttons, highlights. Represents hope and energy.
+
+Warm Orange (#F79824): Accent. Used for hover states, icons, and secondary CTAs. Represents warmth and care.
+
+Blending Accents:
+
+Earth Brown (#7B4B3A): Used for borders or background textures.
+
+Sky Blue (#ADD8E6): Used sparingly in illustrations or backgrounds to open up the space.
+
+Typography:
+
+Headlines: Montserrat (Bold) or Poppins. Modern, geometric, and authoritative.
+
+Body Text: Open Sans or Lato. Highly readable on mobile and desktop.
+
+Iconography & Imagery:
+
+Icons: Line-art icons (FontAwesome or custom) in Dark Blue or Forest Green. They should represent community (hands holding), education (books), and health (cross/heart).
+
+Imagery: Golden Rule: Show dignity. Photos should be high-resolution, well-lit, and capture moments of joy (studying, playing, laughing), not pity.
+
+3. Website Breakdown (Page by Page)
+Page 1: Homepage (The First Handshake)
+Hero Section (Above the Fold):
+
+Background: A full-bleed, high-quality video loop or photo of children laughing or studying in a classroom with the green hills of Kisii in the background.
+
+Headline: "Mojake Orphanage. A Place to Call Home in Kisii."
+
+Sub-headline: "Nurturing orphans and vulnerable children in Kenya through love, education, and healthcare."
+
+Primary CTA (Yellow Button): "Sponsor a Child"
+
+Secondary CTA (Outline Button): "Take a Tour" (Scrolls to a visual story).
+
+Section 2: The Impact Counter (Trust Builders)
+
+Clean white background. Four cards with icons.
+
+Icon: House | Number: 10+ Years | Text: Of Service
+
+Icon: Users | Number: 50+ | Text: Children Cared For
+
+Icon: Graduation Cap | Number: 100% | Text: In Local Schools
+
+Icon: Heart | Number: 3 | Text: Meals Daily
+
+Section 3: Our Promise (The "Why")
+
+Split screen layout.
+
+Left Side (Text - Dark Blue background with white text): "Beyond Shelter, We Build Futures." Explaining the holistic approach (Education, Emotional support, Healthcare).
+
+Right Side (Image): A close-up of a child's hands writing in a notebook.
+
+Section 4: How You Can Help (The 3 Pillars)
+
+Background: Soft White.
+
+Card 1 (Forest Green border, Yellow CTA): Sponsor. "Monthly support for one child." (Icon: Hand holding heart).
+
+Card 2 (Dark Blue border, Orange CTA): Donate. "One-time gifts for food or supplies." (Icon: Food/Meal).
+
+Card 3 (Earth Brown border, Green CTA): Volunteer. "Share your skills or time." (Icon: Suitcase/Hands).
+
+Section 5: Stories of Hope (Social Proof)
+
+Image grid of children with a small excerpt. "Meet Amina. She wants to be a doctor." Link to full story.
+
+Section 6: Newsletter / Footer
+
+A simple input field with an Orange button: "Stay Updated."
+
+Page 2: Our Story & Mission
+Header Image: A panoramic shot of the orphanage building with the caretakers.
+
+Content Blocks:
+
+Our Beginning: How and why "Mojake" was founded (linking to the local Kisii community).
+
+Our Philosophy: Emphasize the "Tree of Life" concept.
+
+Meet the Team: High-quality photos of the directors, social workers, and house mothers. Use a clean grid with names and roles. This builds immense trust.
+
+Page 3: Sponsor a Child (The Core Journey)
+UX Goal: To create a personal connection.
+
+UI Layout:
+
+Filter System: Sidebar allowing users to filter by Age (e.g., 5-7, 8-12) or Gender.
+
+Child Cards:
+
+Circular photo of the child (to feel personal).
+
+Name: "James."
+
+Age: "9."
+
+Hobby: "Loves足球."
+
+Button (Green): "Sponsor James."
+
+Why this works: Instead of asking for vague money, we ask the user to pick a person. This increases conversion rates.
+
+Page 4: Get Involved (Volunteer/Visit)
+Map Integration: A custom map showing Kisii County and the exact location of Mojake.
+
+Information Cards:
+
+Individual Volunteers: Requirements, housing options nearby.
+
+Group/Corporate Volunteers: Team building activities available (painting, farming).
+
+Internships: For social work students.
+
+Page 5: Donation Portal (The Transaction)
+UI Design: Must look as secure as a bank, but feel as warm as a home.
+
+Progress Bar: "Our goal to build a new dormitory: $5,000 / $20,000."
+
+Suggested Amounts: Buttons with icons.
+
+KES 500 (Feeds a child for a week)
+
+KES 2,000 (School uniform)
+
+KES 10,000 (Medical checkups)
+
+Custom Amount: Input field.
+
+Payment Icons: M-Pesa (Lipisha API integration), Visa, PayPal.
+
+4. Unique & Modern Features (The "Smart" Elements)
+To make this the "best" website, we need to integrate smart functionality:
+
+1. The "Transparency Live Feed"
+Instead of a static gallery, create a micro-blog feed.
+
+Example: "Today, we received a donation of books! 📚" (Small Photo). This runs on the sidebar or homepage, proving that the organization is active and accountable.
+
+2. Geo-Located Impact (Kisii Specific)
+
+Use a subtle background texture or pattern inspired by Kisii soapstone carvings. This grounds the international website in a specific Kenyan locality.
+
+3. Smart Sponsor Dashboard (Password Protected)
+
+If a user sponsors a child, they get a login.
+
+Inside, they see: "James's recent school report card." or "James drew you a picture."
+
+This creates a sticky, long-term relationship where the donor feels like a guardian angel, not just an ATM.
+
+4. M-Pesa Integration (Crucial for Local Donations)
+
+Many international sites focus on Credit Cards. A "Smart" Kenyan site must have a "Pay with M-Pesa" button that generates a Till Number or a STK Push directly on the website.
+
+5. Dark/Light Mode Toggle
+
+Given the Forest Green and Dark Blue palette, offering a user toggle between a light mode (daytime, high contrast) and a dark mode (evening, easier on the eyes) shows high technical sophistication.
+
+5. Mobile UX (The Kenyan Context)
+Thumb-Friendly Design: Menus at the bottom, buttons big enough to tap.
+
+Lightweight: Kisii County has varying internet speeds. The site must be optimized (lazy loading images) so it loads fast on 3G/4G connections.
+
+This breakdown ensures that when a visitor lands on mojakeorphanage.org, they feel a sense of calm professionalism combined with heartfelt warmth, prompting them to act.
