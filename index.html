@@ -762,6 +762,24 @@
       .footer-columns { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
+    .ai-btn {
+  background-color: transparent;
+  border: 2px solid var(--sky-blue);
+  padding: 8px 22px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 700;
+  transition: var(--transition);
+  text-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ai-btn:hover {
+  background-color: var(--sky-blue);
+  color: var(--dark-blue);
+  border-color: var(--sunset-yellow);
+}
 
     @keyframes slideRightToLeft {
       0% { transform: translateX(0); }
@@ -786,9 +804,10 @@
         <a href="#">Contact</a>
       </nav>
       <div class="nav-buttons">
-        <a href="#" class="login-btn"><i class="fas fa-user"></i> Log in</a>
-        <a href="#" class="donate-btn-header">Donate</a>
-      </div>
+  <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
+  <a href="#" class="login-btn"><i class="fas fa-user"></i> Log in</a>
+  <a href="#" class="donate-btn-header">Donate</a>
+</div>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
     <!-- Mobile menu dropdown -->
@@ -798,6 +817,7 @@
       <a href="#">Sponsor</a>
       <a href="#">Stories</a>
       <a href="#">Contact</a>
+      <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
       <a href="#"><i class="fas fa-user"></i> Log in</a>
       <a href="#">Donate</a>
     </div>
