@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mojake Orphanage · Our Story & Mission | Kisii, Kenya</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Montserrat + Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ----- RESET & VARIABLES (same as homepage) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --forest: #2C5F2D;
+      --dark-blue: #1A2E40;
+      --white: #FFFFFF;
+      --sunset-yellow: #FDCA40;
+      --warm-orange: #F79824;
+      --earth-brown: #7B4B3A;
+      --sky-blue: #ADD8E6;
+      --gray-light: #F8F9FA;
+      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark-blue);
+      background-color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ----- BUTTONS ----- */
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: 0 8px 16px -6px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary {
+      background-color: var(--sunset-yellow);
+      color: var(--dark-blue);
+    }
+    .btn-primary:hover {
+      background-color: var(--warm-orange);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover {
+      background-color: var(--white);
+      color: var(--dark-blue);
+    }
+
+    /* ----- HEADER / NAV (identical to homepage, with Ask AI button) ----- */
+    header {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+    .logo img:hover {
+      transform: scale(1.02);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-weight: 600;
+      color: var(--white);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--sunset-yellow);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-links a.active {
+      color: var(--sunset-yellow);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    /* AI button (Gemini-like style) */
+    .ai-btn {
+      background-color: transparent;
+      border: 2px solid var(--sky-blue);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      transition: var(--transition);
+      text-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ai-btn:hover {
+      background-color: var(--sky-blue);
+      color: var(--dark-blue);
+      border-color: var(--sunset-yellow);
+    }
+
+    .login-btn {
+      background-color: transparent;
+      border: 2px solid var(--sunset-yellow);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      transition: var(--transition);
+      text-shadow: none;
+    }
+    .login-btn:hover {
+      background-color: var(--sunset-yellow);
+      color: var(--dark-blue);
+      border-color: var(--warm-orange);
+    }
+
+    .donate-btn-header {
+      background-color: var(--warm-orange);
+      padding: 8px 26px;
+      border-radius: 40px;
+      color: var(--dark-blue);
+      font-weight: 700;
+      border: 2px solid var(--sunset-yellow);
+    }
+    .donate-btn-header:hover {
+      background-color: var(--sunset-yellow);
+      border-color: var(--warm-orange);
+    }
+
+    /* mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: var(--transition);
+    }
+    .menu-toggle:hover {
+      color: var(--sunset-yellow);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--dark-blue);
+      margin-top: 20px;
+      border-radius: 20px;
+      padding: 20px;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .mobile-menu.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      color: white;
+      font-weight: 600;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+    .mobile-menu a.active {
+      color: var(--sunset-yellow);
+    }
+
+    /* ----- PAGE HERO (panoramic image) ----- */
+    .page-hero {
+      height: 60vh;
+      min-height: 400px;
+      background: linear-gradient( rgba(26,46,64,0.6), rgba(44,95,45,0.6) ), url('header-image.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      animation: fadeInUp 1s ease;
+    }
+    .page-hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 20px auto 0;
+    }
+
+    /* ----- CONTENT SECTIONS ----- */
+    .section-padding {
+      padding: 80px 0;
+    }
+    .bg-light {
+      background-color: var(--gray-light);
+    }
+
+    .story-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+    .story-block.reverse {
+      flex-direction: row-reverse;
+    }
+    .story-text {
+      flex: 1 1 400px;
+    }
+    .story-text h2 {
+      font-size: 2.5rem;
+      color: var(--forest);
+      margin-bottom: 25px;
+      position: relative;
+    }
+    .story-text h2:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--warm-orange);
+      margin-top: 15px;
+    }
+    .story-text p {
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      color: #2d2d2d;
+    }
+    .story-image {
+      flex: 1 1 400px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .story-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .story-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* Tree of Life icon */
+    .tree-icon {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0 20px;
+    }
+    .tree-icon i {
+      font-size: 3.5rem;
+      color: var(--forest);
+    }
+
+    /* ----- TEAM GRID ----- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .team-card {
+      background: var(--white);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      border-bottom: 5px solid transparent;
+    }
+    .team-card:hover {
+      transform: translateY(-10px);
+      border-bottom-color: var(--forest);
+    }
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .team-card:hover img {
+      transform: scale(1.02);
+    }
+    .team-info {
+      padding: 20px 15px 25px;
+    }
+    .team-info h3 {
+      font-size: 1.6rem;
+      color: var(--dark-blue);
+    }
+    .team-info .role {
+      color: var(--forest);
+      font-weight: 600;
+      margin: 8px 0 12px;
+      display: inline-block;
+      padding: 4px 16px;
+      background: rgba(44,95,45,0.1);
+      border-radius: 50px;
+    }
+    .team-info p {
+      color: #3d3d3d;
+      font-size: 0.95rem;
+    }
+
+    /* ----- FOOTER (simplified, consistent with homepage) ----- */
+    .footer {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 60px 0 30px;
+    }
+    .footer .footer-columns {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .footer-col p, .footer-col a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--sunset-yellow);
+    }
+    .footer-col i {
+      margin-right: 8px;
+      color: var(--sunset-yellow);
+    }
+    .quick-links {
+      list-style: none;
+    }
+    .quick-links li {
+      margin-bottom: 12px;
+    }
+    .quick-links a {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-credit a {
+      color: var(--sunset-yellow);
+      text-decoration: underline;
+    }
+
+    /* ----- ANIMATIONS ----- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .footer-columns { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-buttons { display: none; }
+      .menu-toggle { display: block; }
+      .story-block, .story-block.reverse { flex-direction: column; }
+      .footer-columns { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* helper */
+    .social a {
+      color: white;
+      margin-right: 15px;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    .social a:hover { color: var(--sunset-yellow); }
+  </style>
+</head>
+<body>
+  <!-- Header (same as homepage with Ask AI button) -->
+  <header>
+    <div class="nav-bar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.jpg" alt="Mojake Orphanage logo" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'">
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="story.html" class="active">Our Story</a>
+        <a href="#">Sponsor</a>
+        <a href="#">Stories</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="nav-buttons">
+        <!-- Ask AI button (opens DeepSeek) -->
+        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
+        <a href="#" class="login-btn"><i class="fas fa-user"></i> Log in</a>
+        <a href="#" class="donate-btn-header">Donate</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="our-story.html" class="active">Our Story</a>
+      <a href="#">Sponsor</a>
+      <a href="#">Stories</a>
+      <a href="#">Contact</a>
+      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
+      <a href="#"><i class="fas fa-user"></i> Log in</a>
+      <a href="#">Donate</a>
+    </div>
+  </header>
+
+  <!-- Page Hero: panoramic image of orphanage with caretakers -->
+  <section class="page-hero">
+    <div>
+      <h1>Our Story & Mission</h1>
+      <p>Rooted in Kisii, growing with love</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Our Beginning block -->
+    <section class="section-padding">
+      <div class="container story-block">
+        <div class="story-text">
+          <h2>Our Beginning</h2>
+          <p>Mojake Orphanage was founded in 2015 by local elders and educators who saw a need to care for children who had lost their parents due to illness and hardship. Named after the Swahili words "<strong>Mo</strong>yo" (heart) and "<strong>Jake</strong>" (his/her), Mojake means "their heart" — a place where every child’s heart is nurtured.</p>
+          <p>Deeply rooted in the Kisii community, we began in a small rented house with just five children. Today, thanks to the generosity of neighbours, churches, and international friends, we have grown into a loving home for over 50 children, while staying true to our local values of <em>obosiemo</em> (compassion) and <em>obwato</em> (togetherness).</p>
+          <p><i class="fas fa-map-marker-alt" style="color: var(--forest);"></i> Located in the lush hills of Kisii County, we remain a community-based organisation run by local staff who understand the traditions and language of the children.</p>
+        </div>
+        <div class="story-image">
+          <img src="images/logo.jpg" alt="Mojake orphanage building with caretakers" onerror="this.src='https://via.placeholder.com/600x400?text=Orphanage+Building'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Philosophy: Tree of Life -->
+    <section class="section-padding bg-light">
+      <div class="container story-block reverse">
+        <div class="story-text">
+          <h2>Our Philosophy: The Tree of Life</h2>
+          <div class="tree-icon">
+            <i class="fas fa-tree"></i>
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-leaf"></i>
+          </div>
+          <p>In African tradition, the Baobab is the "Tree of Life" — a gathering place that provides shelter, food, and wisdom. At Mojake, we see ourselves as that tree. Our <strong>roots</strong> are the Kisii community and our founders. Our <strong>trunk</strong> is the dedicated staff who provide daily care. Our <strong>branches</strong> reach out to sponsors, volunteers, and partners who help us grow. And the <strong>fruit</strong> are the children who, once nurtured, will give back to their community.</p>
+          <p>We believe in holistic growth: mind (education), body (health & nutrition), and spirit (emotional support & cultural pride). Every child is encouraged to stay connected to their heritage while gaining skills for a bright future.</p>
+          <p><i class="fas fa-quote-left" style="color: var(--warm-orange);"></i> Just as a tree needs strong roots, a child needs a loving foundation. That is what we provide — a place to belong.</p>
+        </div>
+        <div class="story-image">
+          <img src="images/logo.jpg" alt="Baobab tree symbolizing life" onerror="this.src='https://via.placeholder.com/600x400?text=Baobab+Tree'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Team (Trust builders) -->
+    <section class="section-padding">
+      <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 20px;"><span>Meet the team</span></h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">The heart of Mojake is our dedicated staff — local caretakers, social workers, and leaders who pour their lives into these children.</p>
+        <div class="team-grid">
+          <!-- team member 1 (director) -->
+          <div class="team-card">
+            <img src="team1.jpg" alt="Director" onerror="this.src='https://via.placeholder.com/400x300?text=Director'">
+            <div class="team-info">
+              <h3>James Ombati</h3>
+              <span class="role">Founder & Director</span>
+              <p>A former teacher from Kisii, James has dedicated his life to child welfare. He ensures every child feels loved and has access to education.</p>
+            </div>
+          </div>
+          <!-- team member 2 (social worker) -->
+          <div class="team-card">
+            <img src="team2.jpg" alt="Social Worker" onerror="this.src='https://via.placeholder.com/400x300?text=Social+Worker'">
+            <div class="team-info">
+              <h3>Grace Akinyi</h3>
+              <span class="role">Social Worker</span>
+              <p>Grace counsels children and connects them with relatives. Her warm smile makes every child feel safe and heard.</p>
+            </div>
+          </div>
+          <!-- team member 3 (house mother) -->
+          <div class="team-card">
+            <img src="team3.jpg" alt="House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=House+Mother'">
+            <div class="team-info">
+              <h3>Mama Lucy</h3>
+              <span class="role">Senior House Mother</span>
+              <p>With 10 years of experience, Mama Lucy ensures the children are well-fed, healthy, and go to school with a smile.</p>
+            </div>
+          </div>
+          <!-- team member 4 (house mother) -->
+          <div class="team-card">
+            <img src="team4.jpg" alt="House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=House+Mother'">
+            <div class="team-info">
+              <h3>Mary Moraa</h3>
+              <span class="role">House Mother</span>
+              <p>Mary helps with homework and organises playtime. She’s known for her delicious ugali and stories.</p>
+            </div>
+          </div>
+          <!-- team member 5 (nurse) -->
+          <div class="team-card">
+            <img src="team5.jpg" alt="Nurse" onerror="this.src='https://via.placeholder.com/400x300?text=Nurse'">
+            <div class="team-info">
+              <h3>Emily Kerubo</h3>
+              <span class="role">Nurse & Nutritionist</span>
+              <p>Emily monitors children’s health and prepares nutritious meals. She also teaches hygiene practices.</p>
+            </div>
+          </div>
+          <!-- team member 6 (volunteer coordinator) -->
+          <div class="team-card">
+            <img src="team6.jpg" alt="Volunteer Coordinator" onerror="this.src='https://via.placeholder.com/400x300?text=Coordinator'">
+            <div class="team-info">
+              <h3>Daniel Nyakundi</h3>
+              <span class="role">Volunteer Coordinator</span>
+              <p>Daniel welcomes visitors and organises community outreach. He’s passionate about sharing Kisii culture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (simplified, with quick links and credit) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Mojake Orphanage</h4>
+          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="quick-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="quick-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
+        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('show');
+          const icon = menuToggle.querySelector('i');
+          if (mobileMenu.classList.contains('show')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+
+      // Dynamic copyright year
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Optional: smooth scroll if any anchor links
+    })();
+  </script>
+  <!-- Note: Replace placeholder images with actual files:
+        header-image.jpg (panoramic of orphanage with caretakers)
+        team1.jpg ... team6.jpg (professional photos)
+        tree-of-life.jpg (optional baobab image)
+  -->
+</body>
+</html>
