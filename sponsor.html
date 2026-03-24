@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mojake Orphanage · Sponsor a Child | Kisii, Kenya</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --forest: #2C5F2D;
+      --dark-blue: #1A2E40;
+      --white: #FFFFFF;
+      --sunset-yellow: #FDCA40;
+      --warm-orange: #F79824;
+      --earth-brown: #7B4B3A;
+      --sky-blue: #ADD8E6;
+      --gray-light: #F8F9FA;
+      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark-blue);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background-color: var(--forest);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background-color: #1f451f;
+      transform: translateY(-2px);
+    }
+
+    /* Header (same as other pages) */
+    header {
+      background: linear-gradient(135deg, var(--dark-blue), #0e1f2c);
+      padding: 16px 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo img { height: 60px; width: auto; border-radius: 8px; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--sunset-yellow);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--sunset-yellow); }
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .ai-btn {
+      background: transparent;
+      border: 2px solid var(--sky-blue);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ai-btn:hover { background: var(--sky-blue); color: var(--dark-blue); }
+    .login-btn {
+      background: transparent;
+      border: 2px solid var(--sunset-yellow);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+    }
+    .login-btn:hover { background: var(--sunset-yellow); color: var(--dark-blue); }
+    .donate-btn-header {
+      background: var(--warm-orange);
+      padding: 8px 26px;
+      border-radius: 40px;
+      color: var(--dark-blue);
+      font-weight: 700;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--dark-blue);
+      margin-top: 20px;
+      border-radius: 20px;
+      padding: 20px;
+      gap: 15px;
+    }
+    .mobile-menu.show { display: flex; }
+    .mobile-menu a {
+      color: white;
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Page Title */
+    .page-title {
+      background: var(--gray-light);
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .page-title h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .page-title p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #555;
+    }
+
+    /* Why Sponsor Section (new) */
+    .why-sponsor {
+      background: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .why-sponsor h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .benefit-card {
+      background: var(--gray-light);
+      border-radius: 30px;
+      padding: 30px 20px;
+      transition: var(--transition);
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    .benefit-card i {
+      font-size: 2.5rem;
+      color: var(--forest);
+      margin-bottom: 20px;
+    }
+    .benefit-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Main content: sidebar + cards */
+    .sponsor-main {
+      padding: 50px 0 80px;
+    }
+    .sponsor-layout {
+      display: flex;
+      gap: 40px;
+    }
+    /* Sidebar filters */
+    .filters {
+      flex: 0 0 280px;
+      background: var(--white);
+      border-radius: 30px;
+      padding: 25px 20px;
+      box-shadow: var(--shadow);
+      align-self: start;
+      position: sticky;
+      top: 20px;
+    }
+    .filters h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--forest);
+      padding-left: 12px;
+    }
+    .filter-group {
+      margin-bottom: 30px;
+    }
+    .filter-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .filter-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: #f0f0f0;
+      padding: 8px 18px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+    .filter-btn.active {
+      background: var(--forest);
+      color: white;
+    }
+    .reset-filters {
+      background: none;
+      border: none;
+      color: var(--warm-orange);
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 15px;
+      display: inline-block;
+    }
+
+    /* Child cards grid */
+    .children-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .child-card {
+      background: var(--white);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px 25px;
+      border: 1px solid #eee;
+    }
+    .child-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -12px rgba(44,95,45,0.3);
+    }
+    .child-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 4px solid var(--forest);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    .child-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+    }
+    .child-details {
+      margin: 15px 0;
+      color: #555;
+    }
+    .child-details p {
+      margin: 6px 0;
+    }
+    .child-details i {
+      color: var(--forest);
+      width: 24px;
+    }
+    .sponsor-btn {
+      background: var(--forest);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 40px;
+      font-weight: 700;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+    .sponsor-btn:hover {
+      background: #1f451f;
+      transform: scale(1.02);
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: 50px;
+      font-size: 1.2rem;
+      color: #777;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark-blue);
+      color: white;
+      padding: 60px 0 30px;
+    }
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 { font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-col p, .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .footer-col a:hover { color: var(--sunset-yellow); }
+    .quick-links { list-style: none; }
+    .quick-links li { margin-bottom: 12px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-credit a { color: var(--sunset-yellow); text-decoration: underline; }
+    .social a { color: white; margin-right: 15px; font-size: 1.3rem; }
+
+    @media (max-width: 992px) {
+      .sponsor-layout { flex-direction: column; }
+      .filters { position: static; width: 100%; margin-bottom: 30px; }
+      .filter-options { justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-buttons { display: none; }
+      .menu-toggle { display: block; }
+      .footer-columns { grid-template-columns: 1fr; text-align: center; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .page-title h1 { font-size: 2.5rem; }
+      .child-avatar { width: 120px; height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <div class="logo">
+        <a href="index.html"><img src="images/logo.jpg" alt="Mojake" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'"></a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="sponsor.html" class="active">Sponsor</a>
+        <a href="stories.html">Stories</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-buttons">
+        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
+        <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Log in</a>
+        <a href="donate.html" class="donate-btn-header">Donate</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="sponsor.html" class="active">Sponsor</a>
+      <a href="stories.html">Stories</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
+      <a href="login.html">Log in</a>
+      <a href="donate.html">Donate</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <div class="container">
+        <h1>Sponsor a Child</h1>
+        <p>Choose a child to sponsor and transform their life with education, healthcare, and love.</p>
+      </div>
+    </div>
+
+    <!-- New "Why Sponsor?" Section -->
+    <section class="why-sponsor">
+      <div class="container">
+        <h2>Why Sponsor a Child?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Education</h3>
+            <p>Sponsorship covers school fees, uniforms, and supplies.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Healthcare</h3>
+            <p>Regular checkups, vaccinations, and nutritious meals.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>Emotional Support</h3>
+            <p>A loving family environment and counselling.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Future Leaders</h3>
+            <p>Empower children to become self-reliant adults.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sponsor-main">
+      <div class="container sponsor-layout">
+        <!-- Filter Sidebar -->
+        <aside class="filters">
+          <h3><i class="fas fa-sliders-h"></i> Filters</h3>
+          <div class="filter-group">
+            <label>Age</label>
+            <div class="filter-options" id="ageFilter">
+              <span data-age="all" class="filter-btn active">All</span>
+              <span data-age="5-7" class="filter-btn">5–7 yrs</span>
+              <span data-age="8-12" class="filter-btn">8–12 yrs</span>
+              <span data-age="13-17" class="filter-btn">13–17 yrs</span>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label>Gender</label>
+            <div class="filter-options" id="genderFilter">
+              <span data-gender="all" class="filter-btn active">All</span>
+              <span data-gender="boy" class="filter-btn">Boy</span>
+              <span data-gender="girl" class="filter-btn">Girl</span>
+            </div>
+          </div>
+          <button class="reset-filters" id="resetFilters"><i class="fas fa-undo-alt"></i> Reset all</button>
+        </aside>
+
+        <!-- Child Cards Grid -->
+        <div class="children-grid" id="childrenGrid"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Mojake Orphanage</h4>
+          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="quick-links">
+            <li><a href="our-story.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="sponsor.html"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
+            <li><a href="donate.html"><i class="fas fa-chevron-right"></i> Donate</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="quick-links">
+            <li><a href="stories.html"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
+        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample children data with local images (m1.jpg, m2.jpg, etc.)
+    const childrenData = [
+      { id: 1, name: "James", age: 9, gender: "boy", hobby: "Loves football ⚽", img: "m1.jpg", ageGroup: "8-12" },
+      { id: 2, name: "Amina", age: 12, gender: "girl", hobby: "Dreams of becoming a doctor 🩺", img: "m2.jpg", ageGroup: "8-12" },
+      { id: 3, name: "Grace", age: 7, gender: "girl", hobby: "Loves singing and dancing 🎤", img: "m1.jpg", ageGroup: "5-7" },
+      { id: 4, name: "Daniel", age: 14, gender: "boy", hobby: "Enjoys drawing and art 🎨", img: "m2.jpg", ageGroup: "13-17" },
+      { id: 5, name: "Mary", age: 6, gender: "girl", hobby: "Loves reading storybooks 📚", img: "m1.jpg", ageGroup: "5-7" },
+      { id: 6, name: "Samuel", age: 10, gender: "boy", hobby: "Passionate about mathematics 🧮", img: "m2.jpg", ageGroup: "8-12" },
+      { id: 7, name: "Esther", age: 15, gender: "girl", hobby: "Wants to be a teacher 👩‍🏫", img: "m1.jpg", ageGroup: "13-17" },
+      { id: 8, name: "Brian", age: 8, gender: "boy", hobby: "Loves playing with toy cars 🚗", img: "m2.jpg", ageGroup: "5-7" }
+    ];
+
+    // Fallback placeholder image
+    const placeholderImg = "https://via.placeholder.com/140x140?text=Child";
+
+    // Render cards based on filters
+    function renderChildren(ageFilter, genderFilter) {
+      const grid = document.getElementById("childrenGrid");
+      let filtered = [...childrenData];
+
+      if (ageFilter !== "all") {
+        filtered = filtered.filter(child => child.ageGroup === ageFilter);
+      }
+      if (genderFilter !== "all") {
+        filtered = filtered.filter(child => child.gender === genderFilter);
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="no-results"><i class="fas fa-child"></i> No children match the filters. Try adjusting your search.</div>`;
+        return;
+      }
+
+      let html = "";
+      filtered.forEach(child => {
+        // Use local images (m1.jpg, m2.jpg) – fallback to placeholder if not found
+        const imgSrc = child.img ? child.img : placeholderImg;
+        html += `
+          <div class="child-card" data-id="${child.id}">
+            <img src="${imgSrc}" alt="${child.name}" class="child-avatar" onerror="this.src='${placeholderImg}'">
+            <h3>${child.name}</h3>
+            <div class="child-details">
+              <p><i class="fas fa-calendar-alt"></i> Age: ${child.age}</p>
+              <p><i class="fas fa-heart"></i> ${child.hobby}</p>
+            </div>
+            <button class="sponsor-btn" data-name="${child.name}" data-id="${child.id}">Sponsor ${child.name}</button>
+          </div>
+        `;
+      });
+      grid.innerHTML = html;
+
+      // Attach sponsor button events to redirect to donate.html with child name
+      document.querySelectorAll('.sponsor-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const childName = btn.getAttribute('data-name');
+          window.location.href = `donate.html?child=${encodeURIComponent(childName)}`;
+        });
+      });
+    }
+
+    // Filter state
+    let currentAge = "all";
+    let currentGender = "all";
+
+    function updateFilters() {
+      renderChildren(currentAge, currentGender);
+    }
+
+    // Set up filter buttons
+    const ageBtns = document.querySelectorAll('#ageFilter .filter-btn');
+    const genderBtns = document.querySelectorAll('#genderFilter .filter-btn');
+
+    ageBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ageBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAge = btn.getAttribute('data-age');
+        updateFilters();
+      });
+    });
+
+    genderBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        genderBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentGender = btn.getAttribute('data-gender');
+        updateFilters();
+      });
+    });
+
+    document.getElementById('resetFilters').addEventListener('click', () => {
+      currentAge = "all";
+      currentGender = "all";
+      ageBtns.forEach(btn => {
+        if (btn.getAttribute('data-age') === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      genderBtns.forEach(btn => {
+        if (btn.getAttribute('data-gender') === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      updateFilters();
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('show')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Dynamic copyright year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Initial render
+    renderChildren(currentAge, currentGender);
+  </script>
+</body>
+</html>

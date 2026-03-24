@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mojake Orphanage · Donate to Sponsor a Child</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --forest: #2C5F2D;
+      --dark-blue: #1A2E40;
+      --white: #FFFFFF;
+      --sunset-yellow: #FDCA40;
+      --warm-orange: #F79824;
+      --earth-brown: #7B4B3A;
+      --sky-blue: #ADD8E6;
+      --gray-light: #F8F9FA;
+      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark-blue);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header (unchanged) */
+    header {
+      background: linear-gradient(135deg, var(--dark-blue), #0e1f2c);
+      padding: 16px 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo img { height: 60px; width: auto; border-radius: 8px; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--sunset-yellow);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--sunset-yellow); }
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .ai-btn {
+      background: transparent;
+      border: 2px solid var(--sky-blue);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ai-btn:hover { background: var(--sky-blue); color: var(--dark-blue); }
+    .login-btn {
+      background: transparent;
+      border: 2px solid var(--sunset-yellow);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white;
+    }
+    .login-btn:hover { background: var(--sunset-yellow); color: var(--dark-blue); }
+    .donate-btn-header {
+      background: var(--warm-orange);
+      padding: 8px 26px;
+      border-radius: 40px;
+      color: var(--dark-blue);
+      font-weight: 700;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--dark-blue);
+      margin-top: 20px;
+      border-radius: 20px;
+      padding: 20px;
+      gap: 15px;
+    }
+    .mobile-menu.show { display: flex; }
+    .mobile-menu a {
+      color: white;
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Donation Section */
+    .donation-hero {
+      background: linear-gradient(135deg, var(--forest), #1f451f);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .donation-hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
+    .donation-hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+    .child-name-highlight { color: var(--sunset-yellow); font-weight: 800; }
+
+    .donation-form-section {
+      padding: 60px 0;
+    }
+    .donation-card {
+      background: var(--white);
+      border-radius: 40px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .donation-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      border-left: 5px solid var(--forest);
+      padding-left: 20px;
+    }
+    .child-info {
+      background: var(--gray-light);
+      border-radius: 30px;
+      padding: 20px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .child-info i { font-size: 2.5rem; color: var(--forest); }
+    .child-info p { font-size: 1.2rem; margin: 0; }
+
+    .amount-options {
+      margin: 30px 0;
+    }
+    .amount-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .amount-btn {
+      background: #f0f0f0;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .amount-btn.active {
+      background: var(--forest);
+      color: white;
+    }
+    .custom-amount {
+      margin-top: 15px;
+    }
+    .custom-amount input {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 60px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    .payment-methods {
+      margin: 30px 0;
+    }
+    .payment-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .payment-btn {
+      background: #f0f0f0;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .payment-btn i { font-size: 1.2rem; }
+    .payment-btn.active {
+      background: var(--forest);
+      color: white;
+    }
+
+    .payment-details {
+      background: var(--gray-light);
+      border-radius: 30px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 4px solid var(--forest);
+    }
+    .payment-details h4 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .payment-details p {
+      margin: 10px 0;
+    }
+
+    .donate-btn {
+      background: var(--warm-orange);
+      color: var(--dark-blue);
+      width: 100%;
+      padding: 16px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 20px;
+    }
+    .donate-btn:hover {
+      background: var(--sunset-yellow);
+      transform: scale(1.02);
+    }
+    .secure-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 40px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      position: relative;
+      animation: slideUp 0.3s;
+    }
+    .modal-content i.fa-check-circle {
+      font-size: 4rem;
+      color: var(--forest);
+      margin-bottom: 15px;
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--dark-blue);
+    }
+    .modal-content p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+    .modal-details {
+      background: var(--gray-light);
+      border-radius: 20px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    .modal-details p {
+      margin: 8px 0;
+      font-size: 0.95rem;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .modal-btn {
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .modal-btn-primary {
+      background: var(--forest);
+      color: white;
+    }
+    .modal-btn-primary:hover {
+      background: #1f451f;
+      transform: translateY(-2px);
+    }
+    .modal-btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+    .modal-btn-secondary:hover {
+      background: #ccc;
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+    }
+    .close-modal:hover { color: #333; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Footer (unchanged) */
+    .footer {
+      background: var(--dark-blue);
+      color: white;
+      padding: 60px 0 30px;
+      margin-top: 40px;
+    }
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 { font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-col p, .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .footer-col a:hover { color: var(--sunset-yellow); }
+    .quick-links { list-style: none; }
+    .quick-links li { margin-bottom: 12px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-credit a { color: var(--sunset-yellow); text-decoration: underline; }
+    .social a { color: white; margin-right: 15px; font-size: 1.3rem; }
+
+    @media (max-width: 992px) {
+      .footer-columns { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-buttons { display: none; }
+      .menu-toggle { display: block; }
+      .footer-columns { grid-template-columns: 1fr; text-align: center; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .donation-card { padding: 25px; }
+      .modal-content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <div class="logo"><a href="index.html"><img src="images/logo.jpg" alt="Mojake" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'"></a></div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="sponsor.html">Sponsor</a>
+        <a href="#">Stories</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="nav-buttons">
+        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
+        <a href="#" class="login-btn"><i class="fas fa-user"></i> Log in</a>
+        <a href="donate.html" class="donate-btn-header">Donate</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="sponsor.html">Sponsor</a>
+      <a href="#">Stories</a>
+      <a href="#">Contact</a>
+      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
+      <a href="#">Log in</a>
+      <a href="donate.html">Donate</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="donation-hero">
+      <div class="container">
+        <h1>Make a Life‑Changing Gift</h1>
+        <p>Your donation helps provide education, healthcare, and a loving home to a child at Mojake Orphanage.</p>
+      </div>
+    </div>
+
+    <div class="donation-form-section">
+      <div class="container">
+        <div class="donation-card">
+          <h2><i class="fas fa-hand-holding-heart"></i> Sponsor a Child</h2>
+          <div id="childInfoContainer" class="child-info"></div>
+          <form id="donationForm">
+            <div class="amount-options">
+              <label><strong>Select Donation Amount (USD)</strong></label>
+              <div class="amount-buttons" id="amountButtons">
+                <button type="button" data-amount="25" class="amount-btn">$25</button>
+                <button type="button" data-amount="50" class="amount-btn">$50</button>
+                <button type="button" data-amount="100" class="amount-btn">$100</button>
+                <button type="button" data-amount="250" class="amount-btn">$250</button>
+                <button type="button" data-amount="500" class="amount-btn">$500</button>
+              </div>
+              <div class="custom-amount">
+                <input type="number" id="customAmount" placeholder="Other amount (USD)" step="5" min="5">
+              </div>
+            </div>
+
+            <div class="payment-methods">
+              <label><strong>Choose Payment Method</strong></label>
+              <div class="payment-buttons" id="paymentButtons">
+                <button type="button" data-method="sendwave" class="payment-btn"><i class="fas fa-paper-plane"></i> Sendwave</button>
+                <button type="button" data-method="remitly" class="payment-btn"><i class="fas fa-exchange-alt"></i> Remitly</button>
+                <button type="button" data-method="worldremit" class="payment-btn"><i class="fas fa-globe"></i> WorldRemit</button>
+                <button type="button" data-method="mastercard" class="payment-btn"><i class="fab fa-cc-mastercard"></i> Mastercard</button>
+              </div>
+              <div id="paymentDetails" class="payment-details" style="display: none;"></div>
+            </div>
+
+            <button type="submit" class="donate-btn">Proceed with Donation <i class="fas fa-arrow-right"></i></button>
+            <div class="secure-note">
+              <i class="fas fa-lock"></i> Secure payment – 100% goes to the child's care
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="donationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <i class="fas fa-check-circle"></i>
+      <h3>Confirm Your Donation</h3>
+      <div id="modalMessage"></div>
+      <div class="modal-actions">
+        <button id="modalCancelBtn" class="modal-btn modal-btn-secondary">Cancel</button>
+        <button id="modalConfirmBtn" class="modal-btn modal-btn-primary">Donate Now</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Mojake Orphanage</h4>
+          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="quick-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="sponsor.html"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
+            <li><a href="donate.html"><i class="fas fa-chevron-right"></i> Donate</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="quick-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
+        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Get child name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const childName = urlParams.get('child') || 'a child in need';
+
+    // Display child info
+    const childInfoContainer = document.getElementById('childInfoContainer');
+    childInfoContainer.innerHTML = `
+      <i class="fas fa-child"></i>
+      <div>
+        <p><strong>You are sponsoring:</strong> <span class="child-name-highlight">${decodeURIComponent(childName)}</span></p>
+        <p>Your generosity will provide education, meals, and medical care.</p>
+      </div>
+    `;
+
+    // Amount selection
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customAmountInput = document.getElementById('customAmount');
+    let selectedAmount = 50; // default
+
+    function setActiveAmount(amount) {
+      amountBtns.forEach(btn => {
+        if (parseInt(btn.getAttribute('data-amount')) === amount) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      selectedAmount = amount;
+      customAmountInput.value = '';
+    }
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const amount = parseInt(btn.getAttribute('data-amount'));
+        setActiveAmount(amount);
+      });
+    });
+
+    customAmountInput.addEventListener('input', () => {
+      if (customAmountInput.value) {
+        amountBtns.forEach(btn => btn.classList.remove('active'));
+        selectedAmount = parseFloat(customAmountInput.value) || 0;
+      }
+    });
+
+    // Payment method selection and details
+    const paymentBtns = document.querySelectorAll('.payment-btn');
+    const paymentDetailsDiv = document.getElementById('paymentDetails');
+    let selectedMethod = 'sendwave';
+
+    const methodDetails = {
+      sendwave: {
+        name: 'Sendwave',
+        description: 'Send money directly from your phone. Use the Sendwave app to transfer to our account.',
+        details: 'Recipient: Mojake Orphanage<br>Phone: +254 700 123 456<br>Reference: Sponsor ' + encodeURIComponent(childName),
+        url: 'https://www.sendwave.com',
+        instructions: 'Open Sendwave app or website, send to the number above, and include the reference. Your donation will be matched to the child.'
+      },
+      remitly: {
+        name: 'Remitly',
+        description: 'Fast, reliable transfers. Choose bank deposit or cash pickup.',
+        details: 'Recipient: Mojake Orphanage<br>Bank: Equity Bank, Kisii Branch<br>Account: 1234567890<br>SWIFT: EQBLKENA',
+        url: 'https://www.remitly.com',
+        instructions: 'Select Kenya, then use the bank details above. After sending, notify us at info@mojakeorphanage.org.'
+      },
+      worldremit: {
+        name: 'WorldRemit',
+        description: 'Send online or via app. Choose mobile money or bank transfer.',
+        details: 'Recipient: Mojake Orphanage<br>Mobile Money: +254 700 123 456 (M-Pesa)<br>Bank: Equity Bank, Kisii<br>Account: 1234567890',
+        url: 'https://www.worldremit.com',
+        instructions: 'Select Kenya, then choose either M-Pesa or bank deposit. Use reference: Sponsor ' + encodeURIComponent(childName)
+      },
+      mastercard: {
+        name: 'Mastercard',
+        description: 'Secure online card payment through our partner gateway.',
+        details: 'You will be redirected to a secure payment page where you can enter your card details.',
+        url: 'https://secure.mojake.org/donate', // Replace with actual payment gateway
+        instructions: 'Click the button below to proceed to our secure checkout.'
+      }
+    };
+
+    function showPaymentDetails(method) {
+      const info = methodDetails[method];
+      if (!info) return;
+      paymentDetailsDiv.style.display = 'block';
+      paymentDetailsDiv.innerHTML = `
+        <h4><i class="fas fa-info-circle"></i> ${info.name} Instructions</h4>
+        <p>${info.description}</p>
+        <p><strong>Details to use:</strong><br>${info.details}</p>
+        <p><small>${info.instructions}</small></p>
+      `;
+    }
+
+    paymentBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        paymentBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedMethod = btn.getAttribute('data-method');
+        showPaymentDetails(selectedMethod);
+      });
+    });
+
+    // Initially show default method (Sendwave)
+    document.querySelector('.payment-btn[data-method="sendwave"]').classList.add('active');
+    showPaymentDetails('sendwave');
+
+    // Modal handling
+    const modal = document.getElementById('donationModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeModal = document.querySelector('.close-modal');
+    const cancelBtn = document.getElementById('modalCancelBtn');
+    const confirmBtn = document.getElementById('modalConfirmBtn');
+
+    let pendingAmount = 0;
+    let pendingMethod = '';
+
+    function openModal(amount, method, child) {
+      pendingAmount = amount;
+      pendingMethod = method;
+      const info = methodDetails[method];
+      const methodName = info.name;
+      const instructions = info.instructions;
+      const detailsHtml = info.details.replace(/<br>/g, '\n');
+      modalMessage.innerHTML = `
+        <p><strong>Sponsoring:</strong> ${child}</p>
+        <p><strong>Amount:</strong> $${amount.toFixed(2)} USD</p>
+        <div class="modal-details">
+          <p><strong>${methodName}</strong></p>
+          <p>${instructions}</p>
+          <hr>
+          <p><small>${detailsHtml}</small></p>
+        </div>
+        <p>Click "Donate Now" to open ${methodName} and complete your donation.</p>
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function closeModalFunc() {
+      modal.style.display = 'none';
+    }
+
+    closeModal.addEventListener('click', closeModalFunc);
+    cancelBtn.addEventListener('click', closeModalFunc);
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) closeModalFunc();
+    });
+
+    confirmBtn.addEventListener('click', () => {
+      const url = methodDetails[pendingMethod].url;
+      if (url) {
+        window.open(url, '_blank');
+      }
+      closeModalFunc();
+      // Optionally show a thank you message
+      alert(`Thank you for sponsoring ${decodeURIComponent(childName)}! You will now be redirected to ${methodDetails[pendingMethod].name}.`);
+    });
+
+    // Form submission
+    const form = document.getElementById('donationForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let amount = selectedAmount;
+      if (customAmountInput.value) amount = parseFloat(customAmountInput.value);
+      if (!amount || amount < 5) {
+        alert('Please enter a valid donation amount (minimum $5 USD).');
+        return;
+      }
+      openModal(amount, selectedMethod, decodeURIComponent(childName));
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('show')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Dynamic copyright year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
